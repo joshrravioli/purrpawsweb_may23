@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applicant List</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script>
+        // Your Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyBXZKN1yGyL8oi1wf4iYG_lsWKhZDjtJ3c",
+            authDomain: "purrpauseweb.firebaseapp.com",
+            databaseURL: "https://purrpauseweb-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "purrpauseweb",
+            storageBucket: "purrpauseweb.appspot.com",
+            messagingSenderId: "106624051457",
+            appId: "1:106624051457:web:9358340ef0483441ca9300",
+            measurementId: "G-Y1NQFJDERG"     
+           };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+</head>
+<body>
+    <div class="container">
+        <img id="menu" width="50" height="50" src="https://img.icons8.com/ios-filled/50/000000/menu--v6.png" alt="Menu Icon">
+        <h1>Available Pet Sitters</h1>
+        <div id="applicantList" class="applicants-list">
+            <!-- Pet Sitter Cards will be inserted here by JavaScript -->
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applicant List</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script>
+        // Your Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyBXZKN1yGyL8oi1wf4iYG_lsWKhZDjtJ3c",
+            authDomain: "purrpauseweb.firebaseapp.com",
+            databaseURL: "https://purrpauseweb-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "purrpauseweb",
+            storageBucket: "purrpauseweb.appspot.com",
+            messagingSenderId: "106624051457",
+            appId: "1:106624051457:web:9358340ef0483441ca9300",
+            measurementId: "G-Y1NQFJDERG"     
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        var db = firebase.database();
+    </script>
+</head>
+<body>
+    <div class="container">
+        <img id="menu" width="50" height="50" src="menu-icon.png" alt="Menu Icon">
+        <h1>Available Pet Sitters</h1>
+        <div id="applicantList" class="applicants-list">
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+ -->

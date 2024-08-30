@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>After Look For PurrSitter</title>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script>
+        // Your Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyBXZKN1yGyL8oi1wf4iYG_lsWKhZDjtJ3c",
+            authDomain: "purrpauseweb.firebaseapp.com",
+            databaseURL: "https://purrpauseweb-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "purrpauseweb",
+            storageBucket: "purrpauseweb.appspot.com",
+            messagingSenderId: "106624051457",
+            appId: "1:106624051457:web:9358340ef0483441ca9300",
+            measurementId: "G-Y1NQFJDERG"     
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        var db = firebase.database();
+
+    </script>
+
+</head>
+
+<body>
+    <div class="container">
+        <img id="menu" width="50" height="50" src="https://img.icons8.com/ios-filled/50/000000/menu--v6.png" alt="Back Icon">
+        <img id="uploadedPhoto" src="drawables/default_profile_image.png" alt="Uploaded Photo">
+        <button id="uploadPhotoButton" onclick="uploadPhoto()">Upload Photo</button>
+        <h2>Pet Owner's Information</h2>
+        <input type="text" id="fullName" placeholder="Full Name">
+        <input type="number" id="age" placeholder="Age">
+        <input type="text" id="sex" placeholder="Sex">
+        <input type="text" id="address" placeholder="Address">
+        <h2>Pet's Information</h2>
+        <input type="text" id="petName" placeholder="Pet Name">
+        <input type="text" id="species" placeholder="Species">
+        <input type="text" id="breed" placeholder="Breed">
+        <input type="text" id="petAge" placeholder="Pet Age">
+        <input type="text" id="petSize" placeholder="Pet Size">
+        <button id="submit" onclick="submitForm()">Submit</button>
+        <div id="applicantList"></div>
+    </div>
+</body>
+<script src="script.js"></script>
+</html>

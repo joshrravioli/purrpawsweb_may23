@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questionnaires - Purrpause</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="back-button">
+            <a href="#" onclick="goBack()">Back</a>
+        </div>
+        <h1 class="heading">Screening Questionnaires</h1>
+        <p class="instructions">Please answer the questionnaire for transparency of your services. Thank you!</p>
+
+        <div class="questions">
+            <div class="question">
+                <p>1. Can you provide references from previous pet sitting clients?</p>
+                <input type="text" id="question1">
+                <p>2. Do you have any experience caring for pets similar to mine?</p>
+                <input type="text" id="question2">
+                <p>3. Are you comfortable administering medication to pets if necessary?</p>
+                <input type="text" id="question3">
+                <p>4. Are you willing to provide daily updates and photos of my pet?</p>
+                <input type="text" id="question4">
+                <p>5. How do you handle emergencies or unexpected situations while pet sitting?</p>
+                <input type="text" id="question5">
+                <p>6. Are you comfortable with my pet's specific needs or routines?</p>
+                <input type="text" id="question6">
+                <p>7. How do you ensure the safety of pets under your care?</p>
+                <input type="text" id="question7">
+                <p>8. Are you available for a meet-and-greet with my pet before the pet sitting?</p>
+                <input type="text" id="question8">
+                <p>9. What is your preferred method of communication during the pet sitting?</p>
+                <input type="text" id="question9">
+                <p>10. Are you comfortable with my pet sleeping in your bed if it's their usual routine?</p>
+                <input type="text" id="question10">
+            </div>
+        </div>
+        <button id="submitButton" onclick="submitQuestionnaires()">Submit</button>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyBXZKN1yGyL8oi1wf4iYG_lsWKhZDjtJ3c",
+            authDomain: "purrpauseweb.firebaseapp.com",
+            databaseURL: "https://purrpauseweb-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "purrpauseweb",
+            storageBucket: "purrpauseweb.appspot.com",
+            messagingSenderId: "106624051457",
+            appId: "1:106624051457:web:9358340ef0483441ca9300",
+            measurementId: "G-Y1NQFJDERG"     
+   };
+        firebase.initializeApp(firebaseConfig);
+        var database = firebase.database();
+
+        function submitQuestionnaires() {
+            var user = firebase.auth().currentUser;
+            if (user) {
+                var responses = {
+                    question1: document.getElementById("question1").value,
+                    question2: document.getElementById("question2").value,
+                    question3: document.getElementById("question3").value,
+                    question4: document.getElementById("question4").value,
+                    question5: document.getElementById("question5").value,
+                    question6: document.getElementById("question6").value,
+                    question7: document.getElementById("question7").value,
+                    question8: document.getElementById("question8").value,
+                    question9: document.getElementById("question9").value,
+                    question10: document.getElementById("question10").value,
+                };
+
+                database.ref('questionnaires/' + user.uid).set(responses)
+                    .then(() => {
+                        console.log("Questionnaire responses saved successfully");
+                        window.location.href = "profile.html";
+                    })
+                    .catch((error) => {
+                        console.error("Error saving responses:", error);
+                    });
+            } else {
+                alert("You must be logged in to submit the questionnaire.");
+            }
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

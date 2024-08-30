@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Purrpause</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="script.js"></script>
+
+</head>
+<body>
+    <div class="container-profile">
+        <img id="menu" width="50" height="50" src="https://img.icons8.com/ios-filled/50/000000/menu--v6.png" alt="Menu Icon">
+        <img id="uploadedPhoto" src="drawables/default_profile_image.png" alt="Uploaded Photo" width="150" height="150">
+        
+        <div class="personal-info">
+            <h2>PERSONAL INFORMATION</h2>
+            <p id="fullName">Full Name</p>
+            <p id="age">Age</p>
+            <p id="address">Address</p>
+            <p id="sex">Sex</p>
+            <p id="ratePerHour">Rate per Hour</p>
+            <p id="preferredPet">Preferred Pet</p>
+        </div>
+
+        <div class="questionnaires">
+            <h2>QUESTIONNAIRES</h2>
+            <p id="question1">Question 1</p>
+            <p id="question2">Question 2</p>
+            <!-- Add similar paragraphs for questions 2 to 10 -->
+        </div>
+    </div>
+</body>
+</html>

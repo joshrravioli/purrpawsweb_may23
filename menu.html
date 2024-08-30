@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - Purrpause</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <img src="default_profile_image.png" alt="Profile Image" width="150" height="150">
+
+        <div class="menu">
+            <a id="home" href="applicantlist.html">Home</a>
+            <a id="profile" href="profile.html">Profile</a>
+            <a id="accountPage" href="account.html">Account</a>
+            <a id="questionnaires" href="questionnaires.html">Questionnaires</a>
+            <a id="logout" href="#">Log out</a>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyBXZKN1yGyL8oi1wf4iYG_lsWKhZDjtJ3c",
+            authDomain: "purrpauseweb.firebaseapp.com",
+            databaseURL: "https://purrpauseweb-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "purrpauseweb",
+            storageBucket: "purrpauseweb.appspot.com",
+            messagingSenderId: "106624051457",
+            appId: "1:106624051457:web:9358340ef0483441ca9300",
+            measurementId: "G-Y1NQFJDERG"     
+        };
+        firebase.initializeApp(firebaseConfig);
+        var database = firebase.database();
+
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                database.ref('users/' + user.uid).once('value').then(function(snapshot) {
+                    var userType = snapshot.val().userType;
+                    if (userType !== "pet_sitter") {
+                        window.location.href = "menu2.html";
+                    }
+                }).catch(function(error) {
+                    console.error("Error getting user data:", error);
+                });
+            } else {
+                window.location.href = "login.html";
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("logout").addEventListener("click", function(event) {
+                event.preventDefault();
+                firebase.auth().signOut().then(() => {
+                    localStorage.clear();
+                    window.location.href = "login.html";
+                }).catch((error) => {
+                    console.error("Error signing out:", error);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Sign Up - Purrpause</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Create a New Account</h1>
+        <input type="text" id="signupEmail" placeholder="Email Address">
+        <input type="password" id="signupPassword" placeholder="Password">
+        <select id="userType">
+            <option value="fur_parent">I'm a Fur Parent</option>
+            <option value="pet_sitter">I'm a Pet Sitter</option>
+        </select>
+        <button onclick="signUp()">Sign Up</button>
+        <a href="login.html">Already have an account? Log In</a>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyBXZKN1yGyL8oi1wf4iYG_lsWKhZDjtJ3c",
+            authDomain: "purrpauseweb.firebaseapp.com",
+            databaseURL: "https://purrpauseweb-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "purrpauseweb",
+            storageBucket: "purrpauseweb.appspot.com",
+            messagingSenderId: "106624051457",
+            appId: "1:106624051457:web:9358340ef0483441ca9300",
+            measurementId: "G-Y1NQFJDERG"     
+        };
+        firebase.initializeApp(firebaseConfig);
+        var database = firebase.database();
+
+        function signUp() {
+            var email = document.getElementById("signupEmail").value;
+            var password = document.getElementById("signupPassword").value;
+            var userType = document.getElementById("userType").value;
+
+            firebase.auth().createUserWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    var user = userCredential.user;
+                    database.ref('users/' + user.uid).set({
+                        email: email,
+                        userType: userType
+                    })
+                    .then(() => {
+                        console.log("User type saved successfully");
+                    // Redirect based on user type to complete required forms
+                        if (userType === "fur_parent") {
+                            window.location.href = "look_for_purr_sitter.html";
+                        } else if (userType === "pet_sitter") {
+                            window.location.href = "be_purr_sitter.html";
+                        }
+                    })
+                    .catch((error) => {
+                        console.error("Error saving user type:", error);
+                    });
+                })
+                .catch((error) => {
+                    console.error("Error signing up:", error);
+                    alert("Sign-up failed: " + error.message);
+                });
+        }
+    </script>
+</body>
+</html>
